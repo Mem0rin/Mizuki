@@ -21,8 +21,8 @@ import { LinkPreset } from "./types/config";
 const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UTC+8
 export const siteConfig: SiteConfig = {
-	title: "Mizuki",
-	subtitle: "One demo website",
+	title: "Memorin",
+	subtitle: "welcome to my blog!!",
 	siteURL: "https://www.mem0rin.top/", // 请替换为你的站点URL，以斜杠结尾
 	siteStartDate: "2025-12-06", // 站点开始运行日期，用于站点统计组件计算运行天数
 
@@ -50,7 +50,7 @@ export const siteConfig: SiteConfig = {
 	// 顶栏标题配置
 	navbarTitle: {
 		// 顶栏标题文本
-		text: "Mem0rinUI",
+		text: "Memorin",
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.png
 		icon: "assets/home/home.png",
 	},
