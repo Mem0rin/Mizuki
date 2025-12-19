@@ -44,8 +44,6 @@ permalink: "encrypted-example"
 -2
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
-
 ​    但正如上面所看到的，直接打-2也可以输出-2，为什么要用`print`？
 
 ​    在下面的代码中我们就可以看出两者的差别：
