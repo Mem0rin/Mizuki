@@ -14,11 +14,6 @@ image: './cover.jpeg'
 pubDate: 2025-12-11
 ---
 
-# 【C语言】scanf 和 printf 整理
-
-
-
-> > ![画师：冬阳_kissoml](cover.jpeg)
 > 觉得有帮助的话可以点点蓝链[Mem0rin](https://blog.csdn.net/2501_93882415?type=blog )给主包csdn点个小小的关注吗orz
 
 `scanf`和`printf`需要引入头文件<stdio.h>

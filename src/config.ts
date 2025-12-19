@@ -52,7 +52,7 @@ export const siteConfig: SiteConfig = {
 		// 顶栏标题文本
 		text: "Memorin",
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.png
-		icon: "assets/home/home.jpg",
+		icon: "assets/home/home.png",
 	},
 
 	bangumi: {
@@ -252,10 +252,10 @@ export const navBarConfig: NavBarConfig = {
 					icon: "fa6-brands:github",
 				},
 				{
-					name: "Bilibili",
-					url: "https://space.bilibili.com/701864046",
+					name: "CSDN",
+					url: "https://blog.csdn.net/2501_93882415?type=blog",
 					external: true,
-					icon: "fa6-brands:bilibili",
+					icon: "simple-icons:csdn",
 				},
 				{
 					name: "Gitee",
