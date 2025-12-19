@@ -52,7 +52,7 @@ export const siteConfig: SiteConfig = {
 		// 顶栏标题文本
 		text: "Memorin",
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.png
-		icon: "assets/home/home.png",
+		icon: "assets/home/home1.png",
 	},
 
 	bangumi: {
@@ -247,7 +247,7 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				{
 					name: "GitHub",
-					url: "https://github.com/matsuzaka-yuki/Mizuki",
+					url: "https://github.com/Tr0ic",
 					external: true,
 					icon: "fa6-brands:github",
 				},
@@ -259,7 +259,7 @@ export const navBarConfig: NavBarConfig = {
 				},
 				{
 					name: "Gitee",
-					url: "https://gitee.com/matsuzakayuki/Mizuki",
+					url: "https://gitee.com/memorin",
 					external: true,
 					icon: "mdi:git",
 				},
