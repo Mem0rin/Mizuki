@@ -10,7 +10,7 @@ author: Mem0rin
 sourceLink: "https://blog.csdn.net/2501_93882415/article/details/155542031?spm=1001.2014.3001.5502"
 draft: false
 date: 2025-12-04
-image: "./cover.png"
+image: "./cover.jpg"
 pubDate: 2025-12-04
 permalink: "encrypted-example"
 ---
@@ -58,7 +58,6 @@ hello
 None
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 ​      其中的核心在于：`print`的规则是**自动显示内部输入的任何表达式的值**，因此尽管None不会显示任何信息也会被`print`忠实地打印下来。
 
@@ -73,8 +72,6 @@ None None
 hello world
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
-
 ​    我们还可以在`print`的表达式中调用函数：
 
 ```python
@@ -86,7 +83,6 @@ hello world
 5 16
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 ​    我们用图解来表示这个过程（图像由GPT生成，虽然还是很丑但差不多是这个意思）：
 
@@ -107,11 +103,11 @@ hello world
 None None
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 这个None是什么鬼，为什么会有这样的结果？
 
-事实上`print`是`Non-Pure Function`，这意味着`print`函数除了输入和输出是有side effect的，而这个副作用就是打印值。![img](https://i-blog.csdnimg.cn/direct/06108bf117994f989fe6aad625db4a2b.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)编辑
+事实上`print`是`Non-Pure Function`，这意味着`print`函数除了输入和输出是有side effect的，而这个副作用就是打印值。
+![print函数的输入输出和side effect](print2.png)
 
 我们可以通过代码进行验证
 
@@ -123,7 +119,6 @@ None None
 None
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 同时我们需要注意的是，python的`print`是自带换行符的。
 
@@ -135,7 +130,8 @@ None
 
 ③`print`在打印出值后会自动换行。
 
-那么聪明的你就可以理解为什么是这样的结果了，同样我们用图像分解一下（图片来自CS61A）：![img](https://i-blog.csdnimg.cn/direct/0f3963159e5c442280f142be030d9464.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)编辑
+那么聪明的你就可以理解为什么是这样的结果了，同样我们用图像分解一下（图片来自CS61A）：
+![print函数的嵌套](print3.png)
 
 要运行`print(print(1),print(2))`首先要分别运行`print(1)`，`print(2)`，换行打印side effect 1和2，同时返回None None，最后输出`print(None,None)`，把逗号换成空格，得到None None。
 
@@ -150,6 +146,5 @@ None
 >>> print(1,print(add(3,2)),square(4))
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 
