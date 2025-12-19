@@ -10,7 +10,7 @@ author: Mem0rin
 sourceLink: "https://blog.csdn.net/2501_93882415/article/details/155542031?spm=1001.2014.3001.5502"
 draft: false
 date: 2025-12-04
-image: "./cover.png"
+image: "./cover.jpg"
 pubDate: 2025-12-04
 permalink: "encrypted-example"
 ---
