@@ -12,7 +12,6 @@ draft: false
 date: 2025-12-04
 image: "./cover.jpg"
 pubDate: 2025-12-04
-permalink: "encrypted-example"
 ---
 
 # CS61A：Print 初探（附图解）
