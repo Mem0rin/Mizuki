@@ -24,7 +24,7 @@ permalink: "encrypted-example"
 
 # 目录
 
-[toc]
+
 
 
 ## 一、指针的定义
