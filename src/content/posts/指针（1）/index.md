@@ -1,5 +1,5 @@
 ---
-title: 【C语言】（指针篇）指针的定义
+title: 【C语言】(指针篇)指针的定义
 published: 2025-12-20
 pinned: false
 description: 指针的定义，取地址和解引用
@@ -16,11 +16,13 @@ permalink: "encrypted-example"
 
 ---
 
+
+
 喜欢这个文章可以给主页[Mem0rin](https://blog.csdn.net/2501_93882415?type=blog)点一个关注互三，一起进步！
 
 总算是学完了指针了，目前打算写三篇指针相关的博客，后面两篇讲**指针的运算和遍历**， **指针的传参**。
 
-**文章目录**：
+# 目录
 
 [TOC]
 
