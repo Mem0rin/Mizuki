@@ -12,7 +12,6 @@ draft: false
 date: 2025-12-02
 image: "./cover.jpg"
 pubDate: 2025-12-02
-permalink: "encrypted-example"
 ---
 
 # MIT-Missing-Semester Lcture1整理和习题答案
