@@ -12,7 +12,6 @@ draft: false
 date: 2025-12-20
 image: "./cover.jpg"
 pubDate: 2025-12-20
-permalink: "encrypted-example"
 
 ---
 
