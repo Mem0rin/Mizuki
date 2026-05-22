@@ -10,7 +10,7 @@ author: Mem0rin
 sourceLink: "https://blog.csdn.net/2501_93882415/article/details/159252153?spm=1001.2014.3001.5502"
 draft: False
 date: 2026-03-20
-image: "./cover.png"
+image: "./cover.jpg"
 pubDate: 2026-03-20
 ---
 
