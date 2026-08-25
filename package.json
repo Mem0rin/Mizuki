@@ -1,5 +1,7 @@
 {
-	"name": "mizuki",
+	"name": "memorin-blog",
+	"private": true,
+	"description": "Memorin 的个人博客与学习记录",
 	"type": "module",
 	"version": "7.6.5",
 	"scripts": {

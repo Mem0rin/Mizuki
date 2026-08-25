@@ -1,4 +1,5 @@
 import { getImage } from "astro:assets";
+import path from "node:path";
 // import { getCollection } from "astro:content";
 import type { RSSFeedItem } from "@astrojs/rss";
 import rss from "@astrojs/rss";
@@ -51,43 +52,19 @@ export async function GET(context: APIContext) {
 				src.startsWith("../") ||
 				(!src.startsWith("http") && !src.startsWith("/"))
 			) {
-				let importPath: string | null = null;
-
-				if (src.startsWith("./")) {
-					// Path relative to the post file directory
-					const prefixRemoved = src.slice(2);
-					// Check if this post is in a subdirectory (like bestimageapi/index.md)
-					const postPath = post.id; // This gives us the full path like "bestimageapi/index.md"
-					const postDir = postPath.includes("/")
-						? postPath.split("/")[0]
-						: "";
-
-					if (postDir) {
-						// For posts in subdirectories
-						importPath = `/src/content/posts/${postDir}/${prefixRemoved}`;
-					} else {
-						// For posts directly in posts directory
-						importPath = `/src/content/posts/${prefixRemoved}`;
-					}
-				} else if (src.startsWith("../")) {
-					// Path like ../assets/images/xxx -> relative to /src/content/
-					const cleaned = src.replace(/^\.\.\//, "");
-					importPath = `/src/content/${cleaned}`;
-				} else {
-					// Handle direct filename (no ./ prefix) - assume it's in the same directory as the post
-					const postPath = post.id; // This gives us the full path like "bestimageapi/index.md"
-					const postDir = postPath.includes("/")
-						? postPath.split("/")[0]
-						: "";
-
-					if (postDir) {
-						// For posts in subdirectories
-						importPath = `/src/content/posts/${postDir}/${src}`;
-					} else {
-						// For posts directly in posts directory
-						importPath = `/src/content/posts/${src}`;
-					}
-				}
+				const decodedSrc = decodeURI(src);
+				const normalizedFilePath = post.filePath?.replaceAll("\\", "/");
+				const sourceRootIndex =
+					normalizedFilePath?.lastIndexOf("/src/") ?? -1;
+				const sourceFilePath = normalizedFilePath
+					? sourceRootIndex >= 0
+						? normalizedFilePath.slice(sourceRootIndex + 1)
+						: normalizedFilePath.replace(/^\.\//, "")
+					: `src/content/posts/${post.id}.md`;
+				const postDirectory = path.posix.dirname(sourceFilePath);
+				const importPath = path.posix.normalize(
+					`/${postDirectory}/${decodedSrc}`,
+				);
 
 				const imageMod = await imagesGlob[importPath]?.()?.then(
 					(res) => res.default,
@@ -99,8 +76,7 @@ export async function GET(context: APIContext) {
 						new URL(optimizedImg.src, context.site).href,
 					);
 				} else {
-					// Debug: log the failed import path
-					console.log(
+					console.warn(
 						`Failed to load image: ${importPath} for post: ${post.id}`,
 					);
 				}

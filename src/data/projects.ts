@@ -1,6 +1,3 @@
-// Project data configuration file
-// Used to manage data for the project display page
-
 export interface Project {
 	id: string;
 	title: string;
@@ -15,126 +12,55 @@ export interface Project {
 	endDate?: string;
 	featured?: boolean;
 	tags?: string[];
-	visitUrl?: string; // 添加前往项目链接字段
+	visitUrl?: string;
 }
 
 export const projectsData: Project[] = [
 	{
-		id: "mizuki-blog",
-		title: "Mizuki Blog Theme",
+		id: "graph-decycler",
+		title: "Graph-decycler",
 		description:
-			"Modern blog theme developed based on the Astro framework, supporting multilingual, dark mode, and responsive design features.",
+			"面向复杂网络节点保护问题，采用 Min-Sum 的 decycle 算法与斯坦纳树反向保护方法。担任项目队长，负责算法设计和测试；项目于 2025 年 6 月至 2026 年 5 月参加校级科研立项并获三等奖。",
 		image: "",
-		category: "web",
-		techStack: ["Astro", "TypeScript", "Tailwind CSS", "Svelte"],
+		category: "other",
+		techStack: ["Python", "Min-Sum Decycle", "斯坦纳树"],
 		status: "completed",
-		liveDemo: "https://blog.example.com",
-		sourceCode: "https://github.com/example/mizuki", // 更改为GitHub链接
-		visitUrl: "https://blog.example.com", // 添加前往项目链接
-		startDate: "2024-01-01",
-		endDate: "2024-06-01",
+		sourceCode: "https://github.com/Mem0rin/Graph-decycler",
+		visitUrl: "https://github.com/Mem0rin/Graph-decycler",
+		startDate: "2025-01-01",
+		endDate: "2026-06-30",
 		featured: true,
-		tags: ["Blog", "Theme", "Open Source"],
-	},
-	{
-		id: "portfolio-website",
-		title: "Personal Portfolio",
-		description:
-			"Personal portfolio website showcasing project experience and technical skills.",
-		image: "",
-		category: "web",
-		techStack: ["React", "Next.js", "TypeScript", "Framer Motion"],
-		status: "completed",
-		liveDemo: "https://portfolio.example.com",
-		sourceCode: "https://github.com/example/portfolio",
-		visitUrl: "https://portfolio.example.com", // 添加前往项目链接
-		startDate: "2023-09-01",
-		endDate: "2023-12-01",
-		featured: true,
-		tags: ["Portfolio", "React", "Animation"],
-	},
-	{
-		id: "task-manager-app",
-		title: "Task Manager App",
-		description:
-			"Cross-platform task management application supporting team collaboration and project management.",
-		image: "",
-		category: "mobile",
-		techStack: ["React Native", "TypeScript", "Redux", "Firebase"],
-		status: "in-progress",
-		startDate: "2024-03-01",
-		tags: ["Mobile", "Productivity", "Team Collaboration"],
-	},
-	{
-		id: "data-visualization-tool",
-		title: "Data Visualization Tool",
-		description:
-			"Data visualization tool supporting multiple chart types and interactive analysis.",
-		image: "",
-		category: "web",
-		techStack: ["Vue.js", "D3.js", "TypeScript", "Node.js"],
-		status: "completed",
-		liveDemo: "https://dataviz.example.com",
-		visitUrl: "https://dataviz.example.com", // 添加前往项目链接
-		startDate: "2023-06-01",
-		endDate: "2023-11-01",
-		tags: ["Data Visualization", "Analytics", "Charts"],
-	},
-	{
-		id: "e-commerce-platform",
-		title: "E-commerce Platform",
-		description:
-			"Full-stack e-commerce platform including user management, product management, and order processing features.",
-		image: "",
-		category: "web",
-		techStack: ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
-		status: "planned",
-		startDate: "2024-07-01",
-		tags: ["E-commerce", "Full Stack", "Payment Integration"],
+		tags: ["科研项目", "复杂网络", "节点保护", "算法设计", "校级三等奖"],
 	},
 ];
 
-// Get project statistics
 export const getProjectStats = () => {
 	const total = projectsData.length;
 	const completed = projectsData.filter(
-		(p) => p.status === "completed",
+		(project) => project.status === "completed",
 	).length;
 	const inProgress = projectsData.filter(
-		(p) => p.status === "in-progress",
+		(project) => project.status === "in-progress",
 	).length;
-	const planned = projectsData.filter((p) => p.status === "planned").length;
+	const planned = projectsData.filter(
+		(project) => project.status === "planned",
+	).length;
 
-	return {
-		total,
-		byStatus: {
-			completed,
-			inProgress,
-			planned,
-		},
-	};
+	return { total, byStatus: { completed, inProgress, planned } };
 };
 
-// Get projects by category
 export const getProjectsByCategory = (category?: string) => {
-	if (!category || category === "all") {
-		return projectsData;
-	}
-	return projectsData.filter((p) => p.category === category);
+	if (!category || category === "all") return projectsData;
+	return projectsData.filter((project) => project.category === category);
 };
 
-// Get featured projects
-export const getFeaturedProjects = () => {
-	return projectsData.filter((p) => p.featured);
-};
+export const getFeaturedProjects = () =>
+	projectsData.filter((project) => project.featured);
 
-// Get all tech stacks
 export const getAllTechStack = () => {
-	const techSet = new Set<string>();
-	projectsData.forEach((project) => {
-		project.techStack.forEach((tech) => {
-			techSet.add(tech);
-		});
-	});
-	return Array.from(techSet).sort();
+	const techStack = new Set<string>();
+	for (const project of projectsData) {
+		for (const tech of project.techStack) techStack.add(tech);
+	}
+	return Array.from(techStack).sort();
 };

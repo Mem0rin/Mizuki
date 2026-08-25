@@ -205,10 +205,17 @@ const itemColor = item.color || "#3B82F6";
         <!-- 时间和地点信息 -->
         <div class={`flex items-center gap-4 mb-3 text-black/60 dark:text-white/60 ${sizeClasses.meta}`}>
           <div>
-            {formatDate(item.startDate)} - {item.endDate ? formatDate(item.endDate) : i18n(I18nKey.timelinePresent)}
+            {formatDate(item.startDate)}
+            {item.type !== "achievement" && (
+              <> - {item.endDate ? formatDate(item.endDate) : i18n(I18nKey.timelinePresent)}</>
+            )}
           </div>
-          <div>•</div>
-          <div>{getDuration(item.startDate, item.endDate)}</div>
+          {item.type !== "achievement" && (
+            <>
+              <div>•</div>
+              <div>{getDuration(item.startDate, item.endDate)}</div>
+            </>
+          )}
           {item.location && (
             <>
               <div>•</div>
@@ -307,7 +314,11 @@ const itemColor = item.color || "#3B82F6";
       
       <!-- 时间信息 -->
       <div class={`text-black/70 dark:text-white/70 mb-3 ${sizeClasses.meta}`}>
-        {formatDate(item.startDate)} - {item.endDate ? formatDate(item.endDate) : i18n(I18nKey.timelinePresent)} ({getDuration(item.startDate, item.endDate)})
+        {item.type === "achievement" ? (
+          formatDate(item.startDate)
+        ) : (
+          <>{formatDate(item.startDate)} - {item.endDate ? formatDate(item.endDate) : i18n(I18nKey.timelinePresent)} ({getDuration(item.startDate, item.endDate)})</>
+        )}
       </div>
       
       <!-- 描述 -->

@@ -53,7 +53,11 @@ export default defineConfig({
 			animateHistoryBrowsing: false,
 			skipPopStateHandling: (event) => {
 				// 跳过锚点链接的处理，让浏览器原生处理
-				return event.state && event.state.url && event.state.url.includes("#");
+				return (
+					event.state &&
+					event.state.url &&
+					event.state.url.includes("#")
+				);
 			},
 		}),
 		icon({
@@ -124,7 +128,25 @@ export default defineConfig({
 			},
 		}),
 		svelte(),
-		sitemap(),
+		sitemap({
+			filter: (page) => {
+				const pathname = new URL(page).pathname;
+				const disabledFeaturePaths = [
+					!siteConfig.featurePages.anime && "/anime/",
+					!siteConfig.featurePages.diary && "/diary/",
+					!siteConfig.featurePages.friends && "/friends/",
+					!siteConfig.featurePages.projects && "/projects/",
+					!siteConfig.featurePages.skills && "/skills/",
+					!siteConfig.featurePages.timeline && "/timeline/",
+					!siteConfig.featurePages.albums && "/albums/",
+					!siteConfig.featurePages.devices && "/devices/",
+				].filter(Boolean);
+
+				return !disabledFeaturePaths.some((featurePath) =>
+					pathname.startsWith(featurePath),
+				);
+			},
+		}),
 	],
 	markdown: {
 		remarkPlugins: [
@@ -148,7 +170,8 @@ export default defineConfig({
 						github: GithubCardComponent,
 						note: (x, y) => AdmonitionComponent(x, y, "note"),
 						tip: (x, y) => AdmonitionComponent(x, y, "tip"),
-						important: (x, y) => AdmonitionComponent(x, y, "important"),
+						important: (x, y) =>
+							AdmonitionComponent(x, y, "important"),
 						caution: (x, y) => AdmonitionComponent(x, y, "caution"),
 						warning: (x, y) => AdmonitionComponent(x, y, "warning"),
 					},
@@ -185,8 +208,12 @@ export default defineConfig({
 				onwarn(warning, warn) {
 					// temporarily suppress this warning
 					if (
-						warning.message.includes("is dynamically imported by") &&
-						warning.message.includes("but also statically imported by")
+						warning.message.includes(
+							"is dynamically imported by",
+						) &&
+						warning.message.includes(
+							"but also statically imported by",
+						)
 					) {
 						return;
 					}

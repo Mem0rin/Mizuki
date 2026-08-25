@@ -22,9 +22,22 @@ const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UTC+8
 export const siteConfig: SiteConfig = {
 	title: "Memorin",
-	subtitle: "welcome to my blog!!",
+	subtitle: "Welcome to my blog website!",
 	siteURL: "https://www.mem0rin.top/", // 请替换为你的站点URL，以斜杠结尾
 	siteStartDate: "2025-12-16", // 站点开始运行日期，用于站点统计组件计算运行天数
+	keywords: [
+		"Memorin",
+		"个人博客",
+		"编程学习",
+		"Java",
+		"C语言",
+		"数据结构与算法",
+		"MySQL",
+		"LLM",
+		"AI Agent",
+		"复杂网络",
+		"算法设计",
+	],
 
 	timeZone: SITE_TIMEZONE,
 
@@ -37,14 +50,14 @@ export const siteConfig: SiteConfig = {
 
 	// 特色页面开关配置(关闭不在使用的页面有助于提升SEO,关闭后直接在顶部导航删除对应的页面就行)
 	featurePages: {
-		anime: true, // 番剧页面开关
-		diary: true, // 日记页面开关
-		friends: true, // 友链页面开关
+		anime: false, // 暂无个人追番数据，避免展示模板示例
+		diary: false, // 暂无个人日记数据，避免展示模板示例
+		friends: false, // 收集真实友链后再开启
 		projects: true, // 项目页面开关
-		skills: true, // 技能页面开关
+		skills: false, // 暂不展示技能页，后续整理真实技能信息后再开启
 		timeline: true, // 时间线页面开关
-		albums: true, // 相册页面开关
-		devices: true, // 设备页面开关
+		albums: false, // 暂无个人相册数据，避免展示模板示例
+		devices: false, // 暂无个人设备数据，避免展示模板示例
 	},
 
 	// 顶栏标题配置
@@ -55,9 +68,7 @@ export const siteConfig: SiteConfig = {
 		icon: "assets/home/home1.png",
 	},
 
-	bangumi: {
-		userId: "your-bangumi-id", // 在此处设置你的Bangumi用户ID，可以设置为 "sai" 测试
-	},
+	bangumi: {}, // 追番页面关闭；填写真实 Bangumi ID 后再启用
 
 	anime: {
 		mode: "local", // 番剧页面模式："bangumi" 使用Bangumi API，"local" 使用本地配置
@@ -92,7 +103,7 @@ export const siteConfig: SiteConfig = {
 
 	banner: {
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
-		src: {
+			src: {
 			desktop: [
 				"/assets/desktop-banner/1.jpg",
 				"/assets/desktop-banner/2.jpg",
@@ -121,8 +132,8 @@ export const siteConfig: SiteConfig = {
 
 		waves: {
 			enable: true, // 是否启用水波纹效果(这个功能比较吃性能)
-			performanceMode: false, // 性能模式：减少动画复杂度(性能提升40%)
-			mobileDisable: false, // 移动端禁用
+			performanceMode: true, // 性能模式：减少动画复杂度(性能提升40%)
+			mobileDisable: true, // 移动端禁用，优先保证阅读与续航
 		},
 
 		// PicFlow API支持(智能图片API)
@@ -136,14 +147,13 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "美しいミズキ", // 主页横幅主标题
+			title: "Memorin", // 主页横幅主标题
 
 			subtitle: [
-				"特別なことはないけど、君がいると十分です",
-				"今でもあなたは私の光",
-				"君ってさ、知らないうちに私の毎日になってたよ",
-				"君と話すと、なんか毎日がちょっと楽しくなるんだ",
-				"今日はなんでもない日。でも、ちょっとだけいい日",
+				"把学到的知识，整理成真正理解的内容",
+				"从 Java 与数据结构出发，持续补全技术栈",
+				"关注后端开发，也探索 LLM 与 Agent",
+				"记录过程，复盘问题，保持进步",
 			],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
@@ -168,8 +178,8 @@ export const siteConfig: SiteConfig = {
 	toc: {
 		enable: true, // 启用目录功能
 		mode: "sidebar", // 目录显示模式："float" 悬浮按钮模式，"sidebar" 侧边栏模式
-		depth: 2, // 目录深度，1-6，1 表示只显示 h1 标题，2 表示显示 h1 和 h2 标题，依此类推
-		useJapaneseBadge: true, // 使用日语假名标记（あいうえお...）代替数字，开启后会将 1、2、3... 改为 あ、い、う...
+		depth: 3, // 技术文章常用三级结构，展示 h1-h3
+		useJapaneseBadge: false, // 中文技术站使用数字标记更直观
 	},
 	showCoverInContent: true, // 在文章内容页显示文章封面
 	generateOgImages: false, // 启用生成OpenGraph图片功能,注意开启后要渲染很长时间，不建议本地调试的时候开启
@@ -223,7 +233,7 @@ export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 			"/assets/mobile-banner/6.jpeg",
 			"/assets/mobile-banner/7.jpeg",
 			"/assets/mobile-banner/6.png",
-		], // 移动横幅图片
+		], // 移动壁纸图片
 	}, // 使用本地横幅图片
 	position: "center", // 壁纸位置，等同于 object-position
 	carousel: {
@@ -239,15 +249,36 @@ export const navBarConfig: NavBarConfig = {
 	links: [
 		LinkPreset.Home,
 		LinkPreset.Archive,
-		// 支持自定义导航栏链接,并且支持多级菜单,3.1版本新加
 		{
-			name: "Links",
-			url: "/links/",
+			name: "学习",
+			url: "#",
+			icon: "material-symbols:school",
+			children: [
+				{
+					name: "项目",
+					url: "/projects/",
+					icon: "material-symbols:work",
+				},
+				{
+					name: "时间线",
+					url: "/timeline/",
+					icon: "material-symbols:timeline",
+				},
+			],
+		},
+		{
+			name: "关于",
+			url: "/about/",
+			icon: "material-symbols:person",
+		},
+		{
+			name: "链接",
+			url: "#",
 			icon: "material-symbols:link",
 			children: [
 				{
 					name: "GitHub",
-					url: "https://github.com/Tr0ic",
+					url: "https://github.com/Mem0rin",
 					external: true,
 					icon: "fa6-brands:github",
 				},
@@ -261,74 +292,25 @@ export const navBarConfig: NavBarConfig = {
 					name: "Gitee",
 					url: "https://gitee.com/memorin",
 					external: true,
-					icon: "mdi:git",
-				},
-			],
-		},
-		{
-			name: "My",
-			url: "/content/",
-			icon: "material-symbols:person",
-			children: [
-				{
-					name: "Anime",
-					url: "/anime/",
-					icon: "material-symbols:movie",
+					icon: "simple-icons:gitee",
 				},
 				{
-					name: "Diary",
-					url: "/diary/",
-					icon: "material-symbols:book",
+					name: "知乎",
+					url: "https://www.zhihu.com/people/lately-97",
+					external: true,
+					icon: "simple-icons:zhihu",
 				},
 				{
-					name: "Gallery",
-					url: "/albums/",
-					icon: "material-symbols:photo-library",
+					name: "QQ 邮箱",
+					url: "mailto:memorin@qq.com",
+					external: true,
+					icon: "material-symbols:mail",
 				},
 				{
-					name: "Devices",
-					url: "devices/",
-					icon: "material-symbols:devices",
-					external: false,
-				},
-			],
-		},
-		{
-			name: "About",
-			url: "/content/",
-			icon: "material-symbols:info",
-			children: [
-				{
-					name: "About",
-					url: "/about/",
-					icon: "material-symbols:person",
-				},
-				{
-					name: "Friends",
-					url: "/friends/",
-					icon: "material-symbols:group",
-				},
-			],
-		},
-		{
-			name: "Others",
-			url: "#",
-			icon: "material-symbols:more-horiz",
-			children: [
-				{
-					name: "Projects",
-					url: "/projects/",
-					icon: "material-symbols:work",
-				},
-				{
-					name: "Skills",
-					url: "/skills/",
-					icon: "material-symbols:psychology",
-				},
-				{
-					name: "Timeline",
-					url: "/timeline/",
-					icon: "material-symbols:timeline",
+					name: "Gmail",
+					url: "mailto:Memorin0831@gmail.com",
+					external: true,
+					icon: "material-symbols:mail",
 				},
 			],
 		},
@@ -337,7 +319,7 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.jpg", // 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
-	name: "Memories",
+	name: "Memorin",
 	bio: "輝いて!",
 	typewriter: {
 		enable: true, // 启用个人简介打字机效果
@@ -355,9 +337,24 @@ export const profileConfig: ProfileConfig = {
 			url: "https://gitee.com/memorin",
 		},
 		{
+			name: "知乎",
+			icon: "simple-icons:zhihu",
+			url: "https://www.zhihu.com/people/lately-97",
+		},
+		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/Tr0ic",
+			url: "https://github.com/Mem0rin",
+		},
+		{
+			name: "QQ 邮箱",
+			icon: "material-symbols:mail",
+			url: "mailto:memorin@qq.com",
+		},
+		{
+			name: "Gmail",
+			icon: "material-symbols:mail",
+			url: "mailto:Memorin0831@gmail.com",
 		},
 	],
 };
@@ -406,24 +403,24 @@ export const commentConfig: CommentConfig = {
 	enable: false, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
 	twikoo: {
 		envId: "https://twikoo.vercel.app",
-		lang: "en", // 设置 Twikoo 评论系统语言为英文
+		lang: SITE_LANG,
 	},
 };
 
 export const announcementConfig: AnnouncementConfig = {
-	title: "Announcement", // 公告标题
-	content: "Welcome to my blog! This is a sample announcement.", // 公告内容
+	title: "欢迎来到 Memorin 的博客", // 公告标题
+	content: "希望你能有所收获", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
-		text: "Learn More", // 链接文本
+		text: "了解我", // 链接文本
 		url: "/about/", // 链接 URL
 		external: false, // 内部链接
 	},
 };
 
 export const musicPlayerConfig: MusicPlayerConfig = {
-	enable: true, // 启用音乐播放器功能
+	enable: false, // 当前 Meting API 返回 404，配置可用服务后再开启
 	mode: "meting", // 音乐播放器模式，可选 "local" 或 "meting"
 	meting_api:
 		"https://www.bilibili.uno/api?server=:server&type=:type&id=:id&auth=:auth&r=:r", // Meting API 地址
@@ -433,8 +430,9 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 };
 
 export const footerConfig: FooterConfig = {
-	enable: false, // 是否启用Footer HTML注入功能
-	customHtml: "", // HTML格式的自定义页脚信息，例如备案号等，默认留空
+	enable: true, // 是否启用Footer HTML注入功能
+	customHtml:
+		'<span>原创内容除特别说明外，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="license noopener noreferrer">CC BY-NC-SA 4.0</a> 许可。</span>',
 	// 也可以直接编辑 FooterConfig.html 文件来添加备案号等自定义内容
 	// 注意：若 customHtml 不为空，则使用 customHtml 中的内容；若 customHtml 留空，则使用 FooterConfig.html 文件中的内容
 	// FooterConfig.html 可能会在未来的某个版本弃用
